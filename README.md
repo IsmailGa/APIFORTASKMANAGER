@@ -37,7 +37,7 @@ REST API для управления задачами (карточками) с 
 ### Пользователь
 
 #### Регистрация
-`POST /api/user/signup`
+`POST /api/user/register`
 
 **Request Body:**
 ```
