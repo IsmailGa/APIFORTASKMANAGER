@@ -1,0 +1,12 @@
+PORT=8080
+DB_HOST="localhost"
+DB_PORT=5432
+DB_USER="postgres"
+DB_PASSWORD="123456789"
+DB_NAME="careerConnectDB"
+DB_USERNAME="postgres"
+
+NODE_ENV=development
+
+REFRESH_TOKEN_SECRET="nbhb114=-40in#4$dan"
+ACCESS_TOKEN_SECRET="b6ona0as2"
