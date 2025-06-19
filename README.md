@@ -74,6 +74,11 @@ npm start
 #### Создать карточку
 `POST /api/cards`
 
+**Headers:**
+```
+Authorization: Bearer <token>
+Content-Type: application/json
+```
 **Request Body:**
 ```
 {
@@ -85,45 +90,100 @@ npm start
 ```
 **Response:**
 - `201 Created` — объект карточки
+  ```json
+  {
+    "id": 1,
+    "title": "Задача 1",
+    "caption": "Описание",
+    "dueDate": "2024-07-01",
+    "status": "uncompleted",
+    "userId": 1,
+    ...
+  }
+  ```
+- `400 Bad Request` — если невалидные данные
 
 #### Получить все свои карточки
 `GET /api/cards`
 
+**Headers:**
+```
+Authorization: Bearer <token>
+```
 **Response:**
 - `200 OK` — массив карточек
+  ```json
+  [
+    { "id": 1, "title": "Задача 1", ... },
+    { "id": 2, "title": "Задача 2", ... }
+  ]
+  ```
 
 #### Получить одну карточку
 `GET /api/cards/:id`
 
+**Headers:**
+```
+Authorization: Bearer <token>
+```
 **Response:**
 - `200 OK` — объект карточки
 - `404 Not Found` — если карточка не найдена или не принадлежит пользователю
 
-#### Обновить карточку
-`PUT /api/cards/:id`
+#### Частичное обновление карточки (PATCH)
+`PATCH /api/cards/:id`
 
-**Request Body:** (любое из полей)
+**Headers:**
+```
+Authorization: Bearer <token>
+Content-Type: application/json
+```
+**Request Body:** (можно передавать только нужные поля)
 ```
 {
-  "title": "string",
-  "caption": "string",
-  "dueDate": "YYYY-MM-DD",
-  "status": "completed" | "uncompleted" | "skipped" | "archived"
+  "title": "Новое название",         // не обязательно
+  "caption": "Новый текст",          // не обязательно
+  "dueDate": "2024-07-10",          // не обязательно
+  "status": "completed"              // не обязательно
 }
 ```
 **Response:**
 - `200 OK` — обновлённая карточка
+  ```json
+  {
+    "id": 1,
+    "title": "Новое название",
+    "caption": "Новый текст",
+    "dueDate": "2024-07-10",
+    "status": "completed",
+    ...
+  }
+  ```
+- `400 Bad Request` — если не передано ни одного валидного поля или невалидный формат даты
+  ```json
+  { "message": "No valid fields to update" }
+  // или
+  { "message": "Invalid dueDate format" }
+  ```
 - `404 Not Found` — если карточка не найдена или не принадлежит пользователю
+  ```json
+  { "message": "Card not found" }
+  ```
 
 #### Удалить карточку
 `DELETE /api/cards/:id`
 
+**Headers:**
+```
+Authorization: Bearer <token>
+```
 **Response:**
-- `200 OK` — `{ message: "Card deleted" }`
+- `200 OK` — `{ "message": "Card deleted" }`
 - `404 Not Found` — если карточка не найдена или не принадлежит пользователю
 
 ---
 
 ## Примечания
 - Все ответы в формате JSON.
-- Для защищённых эндпоинтов используйте JWT-токен в заголовке `Authorization: Bearer <token>`. 
+- Для защищённых эндпоинтов используйте JWT-токен в заголовке `Authorization: Bearer <token>`.
+- Для PATCH можно передавать только те поля, которые нужно изменить. Остальные останутся без изменений.
