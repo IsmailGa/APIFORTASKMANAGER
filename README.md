@@ -14,20 +14,20 @@ REST API для управления задачами (карточками) с 
    ```
 2. Настроить переменные окружения в `.env`:
    ```
-DB_USERNAME=your_db_user
-DB_PASSWORD=your_db_password
-DB_NAME=your_db_name
-DB_HOST=localhost
-DB_PORT=5432
-JWT_SECRET=your_jwt_secret
+   DB_USERNAME=your_db_user
+   DB_PASSWORD=your_db_password
+   DB_NAME=your_db_name
+   DB_HOST=localhost
+   DB_PORT=5432
+   JWT_SECRET=your_jwt_secret
    ```
 3. Применить миграции:
    ```
-npx sequelize-cli db:migrate
+   npx sequelize-cli db:migrate
    ```
 4. Запустить сервер:
    ```
-npm start
+   npm start
    ```
 
 ---
