@@ -4,8 +4,13 @@ const app = express();
 const db = require('./models');
 const userRoutes = require('./routes/user');
 const cardRoutes = require('./routes/card');
+const cors = require('cors');
 
 app.use(express.json());
+app.use(cors({
+  origin: 'http://localhost:3000', // Замените на ваш фронтенд URL
+  credentials: true
+}));
 
 // TODO: добавить роуты
 app.use('/api/user', userRoutes);

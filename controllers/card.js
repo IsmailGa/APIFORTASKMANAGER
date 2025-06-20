@@ -22,6 +22,11 @@ exports.create = async (req, res) => {
 exports.getAll = async (req, res) => {
   try {
     const cards = await Card.findAll({ where: { userId: req.user.id } });
+    
+    if(cards.length === 0) {
+      return res.status(404).json({ message: 'No cards found' });
+    }
+    
     res.json(cards);
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
