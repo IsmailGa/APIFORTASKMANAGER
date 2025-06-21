@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       status: {
-        type: Sequelize.ENUM('completed', 'uncompleted', 'skipped', 'archived')
+        type: Sequelize.ENUM('completed', 'uncompleted', 'skipped', 'archived', "in_progress")
       },
       createdAt: {
         type: Sequelize.DATE

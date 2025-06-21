@@ -8,7 +8,7 @@ const cors = require('cors');
 
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:3000', // Замените на ваш фронтенд URL
+  origin: 'http://localhost:5173', // Замените на ваш фронтенд URL
   credentials: true
 }));
 

@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     caption: DataTypes.STRING,
     dueDate: DataTypes.DATE,
-    status: DataTypes.ENUM('completed', 'uncompleted', 'skipped', 'archived'),
+    status: DataTypes.ENUM('completed', 'uncompleted', 'skipped', 'archived', "in_progress"),
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
     userId: DataTypes.INTEGER
